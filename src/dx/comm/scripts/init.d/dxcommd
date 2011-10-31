@@ -1,0 +1,68 @@
+#!/bin/sh
+#
+#   Startup/shutdown script para o dxcommd.
+#
+#   Linux chkconfig stuff:
+#
+#   chkconfig: 2345 55 10
+#   description: Script de inicializacao do dxcommd.
+#
+
+# Source function library.
+if [ -f /etc/init.d/functions ] ; then
+	. /etc/init.d/functions
+elif [ -f /etc/rc.d/init.d/functions ] ; then
+	. /etc/rc.d/init.d/functions
+else
+	exit 0
+fi
+
+DAEMON=dxcommd
+
+prog=dxcommd
+
+start () {
+	echo -n $"Iniciando $prog: "
+
+	# start daemon
+	daemon $DAEMON
+        RETVAL=$?
+	echo
+	[ $RETVAL = 0 ] && touch /var/lock/subsys/dxcommd
+	return $RETVAL
+}
+
+stop () {
+	# stop daemon
+	echo -n $"Parando $prog: "
+	killproc $DAEMON INT
+	RETVAL=$?
+	echo
+	[ $RETVAL = 0 ] && rm -f /var/lock/subsys/dxcommd
+}
+
+restart() {
+	stop
+	start
+}
+
+case $1 in
+	start)
+		start
+	;;
+	stop)
+		stop
+	;;
+	restart)
+		restart
+	;;
+	status)
+		status $DAEMON
+	;;
+	*)
+
+	echo $"Usage: $prog {start|stop|restart|status}"
+	exit 1
+esac
+
+exit $RETVAL
