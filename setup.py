@@ -14,7 +14,7 @@ if os.name == 'nt':
         print "py2exe não encontrado!"
         sys.exit(-1)
     
-    setup(name="dxcommd",
+    setup(name="dx.comm",
           version="4.0",
           description="Comunicador dotX",
           author="João Alfredo Gama Batista",
@@ -35,7 +35,7 @@ else:
     ICONE="dxcomm.xpm"
     INI1="posix/dxcomm.ini"
     INI2="posix/dxexec.ini"
-    setup(name="dxcommd",
+    setup(name="dx.comm",
           version="4.0",
           description="Comunicador de sistemas dotX",
           author="João Alfredo Gama Batista",
