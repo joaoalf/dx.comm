@@ -9,7 +9,7 @@
 import os
 import sys
 from threading import *
-from dxUtils import Config, Log
+from dx.utils import Config, Log
 
 _ConfigDefaults = {'dxexec.comandos':'',
 				   'dxexec.arquivo' :'exec.txt',

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 ##
-# DXCOMM - dotX Communication Server
+# DXCOMM - Comunicador dotX
 # Autor: Joao Alfredo Gama Batista <joaoalf@dotx.com.br>
-# Versao: 0.3
+# Versao: 4.0
 #
 
 import SocketServer
@@ -17,8 +17,8 @@ import datetime
 from stat import ST_CTIME
 import glob
 from threading import *
-import dxUtils
-from dxUtils import Config, Log
+import dx.utils
+from dx.utils import Config, Log
 
 tokens = ['IAM', 'MRC', 'NAL', 'SND', 'ERR']
 
@@ -282,7 +282,7 @@ class Main(object):
     def usage(self):
         """Mensagem de ajuda do programa"""
         print """dotX Communicator daemon (dxcommd)
-2003, 2004 (C) JJLR Consultoria e Servicos Ltda
+2003, 2011 (C) JJLR Consultoria e Servicos Ltda
 
 Uso: dxcommd [opcoes]
 
