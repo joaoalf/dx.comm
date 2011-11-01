@@ -41,10 +41,10 @@ else:
           author="João Alfredo Gama Batista",
           author_email="joaoalf@dotx.com.br",
           url="http://www.dotx.com.br",
-          #scripts=["dxcommd", "dxexec"],
-          namespace_package=['dx'],
+          namespace_package=['dx',],
           package_dir={'': 'src'},
           packages=find_packages('src'),
+          include_package_data = True,
           entry_points={'console_scripts':[
               'dxcommd = dx.comm.scripts:dxcommd',
               'dxexec = dx.comm.scripts:dxexec'],},
