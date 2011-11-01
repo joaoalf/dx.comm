@@ -8,7 +8,11 @@ if os.name == 'nt':
     ICONE="dxcomm.ico"
     INI1="nt/dxcomm.ini"
     INI2="nt/dxexec.ini"
-    import py2exe
+    try:
+        import py2exe
+    except ImportError:
+        print "py2exe não encontrado!"
+        sys.exit(-1)
     
     setup(name="dxcommd",
           version="4.0",
@@ -19,11 +23,12 @@ if os.name == 'nt':
           namespace_package=['dx'],
           package_dir={'': 'src'},
           packages=find_packages('src'),
-          windows=[{"script":"dxcommd.py","icon_resources":[(1,ICONE)]},
-		"dxexec.py"],
+          windows=[{"script":"dxcommd.py","icon_resources":[(1,ICONE)]}, "dxexec.py"],
           data_files=[(DXCOMM_DIR, [ICONE, INI1]),
-		(DXCOMM_DIR, [ICONE, INI2]),
-		(DXCOMM_DIR, [ICONE, LOGO])]
+              (DXCOMM_DIR, [ICONE, INI2]),
+              (DXCOMM_DIR, [ICONE, LOGO])],
+          dependency_links=['https://github.com/joaoalf/dx.utils/tarball/master#egg=dx.utils-1.0'],
+          install_requires=['dx.utils', 'wxPython']
           )
 else:
     DXCOMM_DIR="/usr/local/dxcommd"
@@ -36,12 +41,18 @@ else:
           author="João Alfredo Gama Batista",
           author_email="joaoalf@dotx.com.br",
           url="http://www.dotx.com.br",
-          scripts=["dxcommd", "dxexec"],
+          #scripts=["dxcommd", "dxexec"],
           namespace_package=['dx'],
           package_dir={'': 'src'},
           packages=find_packages('src'),
+          entry_points={'console_scripts':[
+              'dxcommd = dx.comm.scripts:dxcommd',
+              'dxexec = dx.comm.scripts:dxexec'],},
           #py_modules=['dxcomm.dxcommd', 'dxcomm.dxexec', 'dxcomm.gui'],
           data_files=[(DXCOMM_DIR, [ICONE, INI1]),
-		(DXCOMM_DIR, [ICONE, INI2]),
-		('/etc/init.d', ['scripts/dxcommd'])]
+              (DXCOMM_DIR, [ICONE, INI2]),
+              ('/etc/init.d', ['scripts/dxcommd'])],
+          dependency_links=['https://github.com/joaoalf/dx.utils/tarball/master#egg=dx.utils-1.0'],
+          install_requires=['dx.utils',]
           )
+
