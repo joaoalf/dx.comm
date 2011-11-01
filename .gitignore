@@ -3,3 +3,9 @@ dist
 build
 *~
 *.pyc
+parts
+bin
+eggs
+develop-eggs
+src/*.egg-info
+.installed.cfg
